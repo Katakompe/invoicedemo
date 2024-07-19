@@ -10,11 +10,11 @@ group = "me.komposch"
 version = "0.0.1-SNAPSHOT"
 
 
-buildscript{
+buildscript {
     repositories {
         mavenCentral()
     }
-    dependencies{
+    dependencies {
         classpath("org.jooq:jooq-codegen:3.19.10")
         classpath("org.jooq:jooq-meta-extensions:3.19.10")
 
@@ -92,7 +92,7 @@ openApiGenerate {
  * Task to generate data classes for database access
  */
 
-jooq{
+jooq {
     configuration {
         generator {
             database {
@@ -116,6 +116,7 @@ jooq{
  * Only compile after API classes are generated
  */
 tasks.withType(JavaCompile::class) {
+    options.encoding = "UTF-8"
     dependsOn("openApiGenerate")
     dependsOn("jooqCodegen")
 }

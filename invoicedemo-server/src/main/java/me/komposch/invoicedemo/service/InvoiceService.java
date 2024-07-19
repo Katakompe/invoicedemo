@@ -25,21 +25,26 @@ public class InvoiceService implements InvoiceApiDelegate {
 
     @Override
     public ResponseEntity<Invoice> invoiceInvoiceNumberGet(String invoiceNumber) {
-        if(invoiceNumber == null) {
+        if (invoiceNumber == null) {
             return ResponseEntity.notFound().build();
         }
 
         return repository.findByNumber(invoiceNumber)
-                .map(ResponseEntity::ok)
+                .map(invoice -> ResponseEntity.ok()
+                        .header("Content-Type", "application/json;charset=utf-8")
+                        .body(invoice)
+                )
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @Override
     public ResponseEntity<List<InvoiceListItem>> invoicesGet() {
-        return ResponseEntity.ok(repository.selectAll()
-                .stream()
-                .map(InvoiceMappers::toInvoiceListItem)
-                .toList()
-        );
+        return ResponseEntity.ok()
+                .header("Content-Type", "application/json;charset=utf-8")
+                .body(repository.selectAll()
+                        .stream()
+                        .map(InvoiceMappers::toInvoiceListItem)
+                        .toList()
+                );
     }
 }
