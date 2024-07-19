@@ -1,0 +1,88 @@
+openapi: 3.0.3
+info:
+  title: Invoice API
+  description: This API offers endpoints to fetch Invoice data.
+  version: 1.0.0
+servers:
+  - url: localhost:8080
+tags:
+  - name: invoice
+    description: Endpoints regarding invoices.
+paths:
+  /invoices:
+    get:
+      tags:
+        - invoice
+      summary: Fetch all invoices' metadata.
+      responses:
+        '200':
+          description: Successfully fetched invoices
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InvoiceListItem'
+  /invoice/{invoiceNumber}:
+    get:
+      tags:
+        - invoice
+      summary: Finds an invoice by its invoice number.
+      parameters:
+        - name: invoiceNumber
+          in: path
+          description: ID of the invoice to return
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Invoice found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '404':
+          description: Invoice not found
+components:
+  schemas:
+    InvoiceListItem:
+      required:
+        - invoiceNumber
+        - dueDate
+        - billingAmount
+      type: object
+      properties:
+        invoiceNumber:
+          type: string
+          example: "ID1"
+        dueDate:
+          type: string
+          format: date
+          example: 2024-12-24
+        billingAmount:
+          type: number
+          format: double
+    Invoice:
+      required:
+        - invoiceNumber
+        - dueDate
+        - billingAmount
+      type: object
+      properties:
+        invoiceNumber:
+          type: string
+          example: "ID1"
+        dueDate:
+          type: string
+          format: date
+          example: 2024-12-24
+        billingAmount:
+          type: number
+          format: double
+        name:
+          type: string
+          example: "Max Mustermann"
+        address:
+          type: string
+          example: "Daheim 1, 1010 Wien"
