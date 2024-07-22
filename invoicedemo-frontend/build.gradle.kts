@@ -28,6 +28,12 @@ tasks.register<NpmTask>("ngBuild") {
   outputs.dir("dist")
 }
 
+val ngTest = tasks.register<NpmTask>("ngTest") {
+  dependsOn("ngOpenapiGenerate")
+  args = listOf("run", "test")
+}
+
+
 /**
  * Configuration to create a WebJar from the Angular frontend which can be consumed as a dependency from the invoicedemo-server
  */
@@ -52,6 +58,7 @@ artifacts {
  */
 tasks.named("build") {
   dependsOn(webjar)
+  dependsOn(ngTest)
 }
 
 /**

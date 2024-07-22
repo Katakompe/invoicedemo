@@ -22,7 +22,7 @@
       *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-@if ((invoices$ | async)?.length === null) {
+@if ((invoices$ | async) === null) {
   <mat-spinner aria-label="Loading data"></mat-spinner>
 }
 

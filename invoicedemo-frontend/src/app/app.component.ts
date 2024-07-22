@@ -1,8 +1,8 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import {ApiModule, BASE_PATH, InvoiceListItem, InvoiceService} from "./generated/modules/openapi";
+import {BASE_PATH, InvoiceListItem, InvoiceService} from "./generated/modules/openapi";
 import {SERVER_BASE_URL} from "./env";
-import {delay, Observable, of} from "rxjs";
+import {Observable, of, share} from "rxjs";
 import {MatTableModule} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
 import {InvoiceDetailDialogComponent} from "./invoice-detail-dialog/invoice-detail-dialog.component";
@@ -13,7 +13,13 @@ import {NoDataRowOutlet} from "@angular/cdk/table";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ApiModule, MatTableModule, MatProgressSpinner, AsyncPipe, NoDataRowOutlet],
+  imports: [
+    RouterOutlet,
+    MatTableModule,
+    MatProgressSpinner,
+    AsyncPipe,
+    NoDataRowOutlet
+  ],
   providers: [
     {provide: BASE_PATH, useValue: SERVER_BASE_URL},
   ],
@@ -34,8 +40,8 @@ export class AppComponent implements OnInit {
   }
 
   private loadInvoices() {
-    this.invoices$ = this.invoiceService.invoicesGet()      .pipe(
-      delay(1000)
+    this.invoices$ = this.invoiceService.invoicesGet().pipe(
+     share()
     );
   }
 

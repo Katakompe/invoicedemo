@@ -1,6 +1,9 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {InvoiceDetailDialogComponent} from './invoice-detail-dialog.component';
+import {ApiModule} from "../generated/modules/openapi";
+import {provideHttpClient} from "@angular/common/http";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 describe('InvoiceDetailDialogComponent', () => {
   let component: InvoiceDetailDialogComponent;
@@ -8,7 +11,9 @@ describe('InvoiceDetailDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [InvoiceDetailDialogComponent]
+      imports: [InvoiceDetailDialogComponent, ApiModule],
+      providers: [provideHttpClient(),
+        { provide: MatDialogRef, useValue: {} }, { provide: MAT_DIALOG_DATA, useValue: "A1" }]
     })
     .compileComponents();
 
