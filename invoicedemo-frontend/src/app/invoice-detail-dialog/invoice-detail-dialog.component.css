@@ -1,0 +1,12 @@
+mat-spinner {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+mat-card-title {
+  margin-bottom: 8px;
+}
+
+tr:nth-of-type(odd) {
+  background-color: lightblue;
+}

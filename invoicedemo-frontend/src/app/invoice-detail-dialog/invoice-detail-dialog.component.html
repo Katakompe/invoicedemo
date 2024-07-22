@@ -1,0 +1,39 @@
+@if (invoice === null) {
+  <mat-spinner aria-label="Loading data"></mat-spinner>
+} @else {
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> Invoice {{ invoiceNumber }} </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table>
+        <tr>
+          <td><b>Invoice Number</b></td>
+          <td>{{ invoice.invoiceNumber }}</td>
+        </tr>
+        <tr>
+          <td><b>Due Date</b></td>
+          <td>{{ invoice.dueDate }}</td>
+        </tr>
+        <tr>
+          <td><b>Billing Amount</b></td>
+          <td>{{ invoice.billingAmount }}</td>
+        </tr>
+        <tr>
+          <td><b>Name</b></td>
+          <td>{{ invoice.name }}</td>
+        </tr>
+        <tr>
+          <td><b>Address</b></td>
+          <td>{{ invoice.address }}</td>
+        </tr>
+      </table>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="closeDialog()">Return</button>
+    </mat-card-actions>
+
+
+  </mat-card>
+
+}
