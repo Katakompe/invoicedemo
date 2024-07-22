@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import {ApiModule, BASE_PATH, InvoiceListItem, InvoiceService} from "./core/modules/openapi";
+import {ApiModule, BASE_PATH, InvoiceListItem, InvoiceService} from "./generated/modules/openapi";
 import {SERVER_BASE_URL} from "./env";
 import {Observable, of} from "rxjs";
 import {MatTableModule} from "@angular/material/table";

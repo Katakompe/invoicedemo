@@ -48,6 +48,16 @@ dependencies {
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    // Import Webjar built from frontend module to expose it as static resource in backend.
+    runtimeOnly(
+        project(
+            mapOf(
+                "path" to ":invoicedemo-frontend",
+                "configuration" to "webjars"
+            )
+        )
+    )
+
 }
 
 tasks.withType<Test> {
@@ -120,4 +130,5 @@ tasks.withType(JavaCompile::class) {
     dependsOn("openApiGenerate")
     dependsOn("jooqCodegen")
 }
+
 
