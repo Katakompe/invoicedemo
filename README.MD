@@ -19,7 +19,7 @@ generated with jooq-codegen from the [schema.sql](invoicedemo-server/src/main/re
 ## Frontend
 
 The frontend is an Angular 18 application. It is packaged as a webjar and delivered as a static resource by the 
-Spring-Boot server. 
+Spring-Boot server.
 
 # Running the application
 
@@ -27,6 +27,9 @@ Spring-Boot server.
 
 This project uses Gradle as its build tool. In order to run gradle to build this project, you need to have at least a 
 Java 21 JDK installed. 
+
+Frontend tests are currently running in Headless Chrome. In order to run them you need to set the environment variable 
+`CHROME_BIN` to the executable of your chrome(ium) installation.
 
 ## Build and run the application
 
